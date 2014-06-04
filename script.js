@@ -22,7 +22,8 @@ function inicio()
 		comida : "blue"
 	}
 	var comida = "";
-	movimiento = 200;
+	var movimiento = 200;
+	
 	var comidaCulebrita = function()
 	{
 		//Generar puntos aletorios entre 0 - 44
@@ -32,7 +33,7 @@ function inicio()
 				 };
 	}
 
-	function iniciaJuego()
+	function iniciaJuego(movimient)
 	{
 		pause = false;
 		score = 0;
@@ -45,24 +46,22 @@ function inicio()
 		{
 			clearInterval(cilcloJuego);
 		}
-		
-		cilcloJuego = setInterval(mov, movimiento);
+		cilcloJuego = setInterval(mov, movimient);
 		console.log("Termina acá");
+		
 	}
-	iniciaJuego();
+	iniciaJuego(movimiento);
 
 	function mov()
 	{
 			if(!pause)
 			{
 				dibujarCulebrita();
-				
 				clearInterval(cilcloJuego);
-
 				cilcloJuego = setInterval(mov, movimiento);
-				console.log(movimiento);
-				
-			}		
+				console.log(movimiento);				
+			}	
+
 	}
 
 	var dibujaCanvas = function()
@@ -82,7 +81,6 @@ function inicio()
 			if(cuerpo[i].x === x && cuerpo[i].y === y)
 			{
 				hayColision = true;
-				movimiento == 200;
 				break;
 			}
 		}
@@ -112,8 +110,8 @@ function inicio()
 		if(cabezaX == -1 || cabezaX == w/dc || cabezaY == -1 || cabezaY == h/dc || colisionaCuerpo)
 		{
 			audios("muere.mp3");
-			movimiento == 200;
-			iniciaJuego();
+			movimiento = 200;
+			iniciaJuego(movimiento);
 			return;
 		}
 		//console.log(cabezaX + " == " + comida.x + " Y " + cabezaY + " == " + comida.y);
